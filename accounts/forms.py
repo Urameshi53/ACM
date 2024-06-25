@@ -9,7 +9,7 @@ class LoginForm(forms.Form):
                                 'label':'Email'
                                 }))
     password = forms.CharField(max_length=100, 
-                            widget=forms.TextInput(attrs={
+                            widget=forms.PasswordInput(attrs={
                                 'class':'form-control',
                                 'id':'password',
                                 }))
@@ -38,13 +38,13 @@ class RegistrationForm(forms.Form):
     
 
     password1 = forms.CharField(max_length=100, 
-                            widget=forms.TextInput(attrs={
+                            widget=forms.PasswordInput(attrs={
                                 'class':'form-control',
                                 'id':'password',
                                 }))
     
     password2 = forms.CharField(max_length=100, 
-                            widget=forms.TextInput(attrs={
+                            widget=forms.PasswordInput(attrs={
                                 'class':'form-control',
                                 'id':'password',
                                 }))
@@ -55,20 +55,20 @@ class RegistrationForm(forms.Form):
 
 
 class ResetPasswordForm(forms.Form):
-    old_password = forms.CharField(widget=forms.TextInput(attrs={
+    old_password = forms.CharField(widget=forms.PasswordInput(attrs={
                                 'class':'form-control',
                                 'id':'old_password',
                                 'label':'Email'
                                 }))
     
-    password1 = forms.CharField(widget=forms.TextInput(attrs={
+    password1 = forms.CharField(widget=forms.PasswordInput(attrs={
                                 'class':'form-control',
                                 'id':'password1',
                                 'label':'Email'
                                 }))
     
     password2 = forms.CharField(max_length=100, 
-                            widget=forms.TextInput(attrs={
+                            widget=forms.PasswordInput(attrs={
                                 'class':'form-control',
                                 'id':'password2',
                                 }))
