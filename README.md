@@ -1,6 +1,7 @@
 # Access-Key-Manager
 
 # Project Title: Access Key Manager
+# Deployed link: https://lancelot530.pythonanywhere.com/
 # Project Objective
 Micro-Focus Inc., a software company has built a school management platform that is 
 multitenant i.e., various schools can set up on the platform as though the platform was 
@@ -30,3 +31,6 @@ API Endpoint
 
 Admin Page
 ![Screenshot 2024-06-23 024426](https://github.com/Urameshi53/Access-Key-Manager/assets/84080570/ff1dc7d9-341b-4dab-807e-c144515ba670)
+
+ER Diagrom
+![Screenshot 2024-06-25 015414](https://github.com/Urameshi53/ACM/assets/84080570/8ca09beb-0890-4046-9842-77a0e28f4548)
