@@ -82,7 +82,7 @@ def logout_view(request):
 def signup_view(request):
     form = RegistrationForm
     if request.method == 'POST':
-        inactive_user = send_verification_email(request, form)
+        #inactive_user = send_verification_email(request, form)
 
         username = request.POST.get('username')
         email = request.POST.get('email')
