@@ -131,12 +131,12 @@ STATICFILES_STORAGE = "django.contrib.staticfiles.storage.StaticFilesStorage"
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Mail Server variables
-EMAIL_BACKEND = 'django.core.mail.backend.smtp.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587 
 EMAIL_USE_TLS = True 
-EMAIL_HOST_USER = os.environ.get('EMAIL_ID')
-EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PW')
+EMAIL_USE_SSL = False
+EMAIL_HOST_USER = 'zigahemmanue53@gmail.com'
+EMAIL_HOST_PASSWORD = 'Ju5t1@e1'
 EXPIRE_AFTER = '1h'
 
-DEFAULT_FROM_EMAIL = 'noreply<noreply@domail.com>'

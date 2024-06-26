@@ -187,6 +187,15 @@
   </aside><!-- End Sidebar-->
 
   <main id="main" class="main">
+    {% if error_messages %}
+      {% for error in error_messages %}
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+          {{ error }}
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        <div class="container">
+      {% endfor %}
+    {% endif %}
 
     <div class="pagetitle">
       <h1>Profile</h1>

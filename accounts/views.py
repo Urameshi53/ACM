@@ -13,12 +13,18 @@ from django.views import generic
 from django.template import RequestContext
 from django.views.generic.base import RedirectView
 from django import urls
+from django.http import HttpResponse, HttpResponseRedirect
+from django.core.mail import send_mail
 
 from .forms import LoginForm, RegistrationForm, ResetPasswordForm
 from tenant.models import School
 from django.contrib.auth import logout
 
 from verify_email.email_handler import send_verification_email
+
+import re
+
+other_error_messages = []
 
 class ProfileView(generic.DetailView):
     template_name = "accounts/profile.html"
@@ -29,6 +35,7 @@ class ProfileView(generic.DetailView):
         context = super(ProfileView, self).get_context_data(*args, **kwargs)
         context['school'] = School.objects.filter(user=self.request.user)[0]
         context['form'] = ResetPasswordForm
+        context['error_messages'] = other_error_messages
 
         if self.request.method == 'POST':
             email = self.request.POST.get('email')
@@ -41,12 +48,11 @@ class ProfileView(generic.DetailView):
             else:
                 print('did not work')    
 
-
         return context
 
 def login(request):
-    context = {}
     error_messages = []
+    context = {}
     form = LoginForm
     if request.method == 'POST':
         email = request.POST.get('email')
@@ -78,43 +84,55 @@ def logout_view(request):
     logout(request)
     return redirect('home')
 
+regex = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,7}\b'
+def check_email(email):
+    if (re.fullmatch(regex, email)):
+        return True 
+    else:
+        return False
 
 def signup_view(request):
+    error_messages = []
     form = RegistrationForm
     if request.method == 'POST':
-        #inactive_user = send_verification_email(request, form)
-
         username = request.POST.get('username')
         email = request.POST.get('email')
         location = request.POST.get('location')
         password1 = request.POST.get('password1')
-        password1 = request.POST.get('password1')
+        password2 = request.POST.get('password2')
 
-        user = User()
-        user.username = username
-        user.email = email
-        user.set_password(password1)
-        user.save()
+        if password1 == password2 and check_email(email):
+            #send_mail(f'Hello {username}, welcome to my site', 'Blah blah blah', 'zigahemmanuel53@gmail.com', ['emmanuelzigah2019@gmail.com',])
+            
+            user = User()
+            user.username = username
+            user.email = email
+            user.set_password(password1)
+            user.save()
 
-        school = School()
-        school.user_id = user.id
-        school.school_name = user.username
-        school.email = user.email
-        school.password = password1
-        school.location = location
-        school.save()
+            school = School()
+            school.user_id = user.id
+            school.school_name = user.username
+            school.email = user.email
+            school.password = password1
+            school.location = location
+            school.save()
 
-        auth_login(request, user)
-
-        return redirect('home')
+            auth_login(request, user)
+            #return render(request, 'accounts/send_email.html')
+            return redirect('home')
+        else:
+            if password1 != password2:
+                error_messages.append('Passwords do not match')
+            else:
+                error_messages.append('Incorrect email')                
     else:
         pass    
 
-    return render(request, 'accounts/signup.html', {'form':form})
+    return render(request, 'accounts/signup.html', {'form':form, 'error_messages':error_messages})
 
 
 def reset_view(request, user_id):
-    error_messages = []
     form = ResetPasswordForm
     if request.method == 'POST':
         old_password = request.POST.get('old_password')
@@ -125,10 +143,13 @@ def reset_view(request, user_id):
         if user.check_password(old_password) and password1 == password2:
             user.set_password(password1)
             user.save()    
-
-        if user:
-            auth_login(request, user)
-            return redirect('home') 
+            #auth_login(request, user)
+            return redirect('home')
         else:
             auth_login(request, user)
-            return redirect('profile')
+            if password1 != password2:
+                other_error_messages.append('passwords did not match')
+            else:
+                other_error_messages.append('Old password is wrong')
+            return HttpResponseRedirect(f"/accounts/{user_id}/")
+

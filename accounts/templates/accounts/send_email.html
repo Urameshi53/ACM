@@ -62,30 +62,14 @@
                 <div class="card-body">
 
                   <div class="pt-4 pb-2">
-                    <h5 class="card-title text-center pb-0 fs-4">Login to Your Account</h5>
-                    <p class="text-center small">Enter your username & password to login</p>
+                    <h5 class="card-title text-center pb-0 fs-4">Email Verification</h5>
+                    <p class="text-center small">Click link in your E-mail to proceed</p>
                   </div>
-
-                  <form method="POST" class="row g-3 needs-validation" validate>
-                    {% csrf_token %}
-                    {{ form }}
-                    
-                    <div class="col-12">
-                      <button class="btn btn-primary w-100" type="submit">Login</button>
-                    </div>
-                    <div class="col-12">
-                      <p class="small mb-0">Don't have account? <a href="{% url 'accounts:signup' %}">Create an account</a></p>
-                    </div>
-                  </form>
 
                 </div>
               </div>
 
               <div class="credits">
-                <!-- All the links in the footer should remain intact. -->
-                <!-- You can delete the links only if you purchased the pro version. -->
-                <!-- Licensing information: https://MicroFocus.com/license/ -->
-                <!-- Purchase the pro version with working PHP/AJAX contact form: https://MicroFocus.com/nice-admin-bootstrap-admin-html-template/ -->
                 Designed by <a href="https://MicroFocus.com/">MicroFocus</a>
               </div>
 
