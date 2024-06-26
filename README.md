@@ -2,6 +2,10 @@
 
 # Project Title: Access Key Manager
 Deployed link: https://lancelot530.pythonanywhere.com/
+Admin Details: 
+E-mail - knust@gmail.com 
+Password: knust123
+
 # Project Objective
 Micro-Focus Inc., a software company has built a school management platform that is 
 multitenant i.e., various schools can set up on the platform as though the platform was 
@@ -10,6 +14,9 @@ monetize it rather than building payment features into the school software. They
 decided to outsource the project to you, to build a key manager, a web application that
 schools can use to purchase access keys to activate their school account.
 
+Requirements
+pycryptodome for cryptography
+djangorestframework for api endpoint
 
 Management System Dashboard
 ![Screenshot 2024-06-23 022222](https://github.com/Urameshi53/Access-Key-Manager/assets/84080570/386990a1-6a77-469c-8e48-9e2c3a29406e)
