@@ -15,6 +15,7 @@ from django.views.generic.base import RedirectView
 from django import urls
 from django.http import HttpResponse, HttpResponseRedirect
 from django.core.mail import send_mail
+from django.template.loader import render_to_string
 
 from .forms import LoginForm, RegistrationForm, ResetPasswordForm
 from tenant.models import School
@@ -102,8 +103,10 @@ def signup_view(request):
         password2 = request.POST.get('password2')
 
         if password1 == password2 and check_email(email):
-            #send_mail(f'Hello {username}, welcome to my site', 'Blah blah blah', 'zigahemmanuel53@gmail.com', ['emmanuelzigah2019@gmail.com',])
-            
+            html_message = render_to_string('accounts/email_message.html')
+            message = 'Thank you'
+            send_mail(f'Hello {username}, thank you for registering with MicroFocus.', message, 'zigahemmanuel53@gmail.com', ['emmanuelzigah2019@gmail.com',], html_message=html_message)
+                        
             user = User()
             user.username = username
             user.email = email
@@ -119,8 +122,8 @@ def signup_view(request):
             school.save()
 
             auth_login(request, user)
-            #return render(request, 'accounts/send_email.html')
-            return redirect('home')
+            return render(request, 'accounts/send_email.html')
+            #return redirect('home')
         else:
             if password1 != password2:
                 error_messages.append('Passwords do not match')

@@ -137,6 +137,6 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True 
 EMAIL_USE_SSL = False
 EMAIL_HOST_USER = 'zigahemmanue53@gmail.com'
-EMAIL_HOST_PASSWORD = 'Ju5t1@e1'
+EMAIL_HOST_PASSWORD = 'gqzmukkzpywuvoru'
 EXPIRE_AFTER = '1h'
 
