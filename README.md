@@ -18,6 +18,9 @@ Requirements
 pycryptodome for cryptography
 djangorestframework for api endpoint
 
+Email Verification
+![Screenshot 2024-06-27 012649](https://github.com/Urameshi53/ACM/assets/84080570/f1d05aaf-3bb1-4619-af4b-8413070c88d7)
+
 Management System Dashboard
 ![Screenshot 2024-06-23 022222](https://github.com/Urameshi53/Access-Key-Manager/assets/84080570/386990a1-6a77-469c-8e48-9e2c3a29406e)
 
